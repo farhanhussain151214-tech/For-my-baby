@@ -270,8 +270,20 @@ button:hover{
 <script>
 
 function openEnvelope(){
-    document.getElementById("envelope").classList.add("open");
-    document.getElementById("surpriseBtn").style.display="inline-block";
+
+    document.getElementById("envelope")
+        .classList.add("open");
+
+    setTimeout(() => {
+
+        const btn =
+            document.getElementById("surpriseBtn");
+
+        btn.style.opacity = "1";
+        btn.style.pointerEvents = "auto";
+
+    },1000);
+
 }
 
 function showLove(){
