@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Love ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(-45deg,#ff758c,#ff7eb3,#ff4d6d,#ff8fab);
+    background-size:400% 400%;
+    animation:bg 12s ease infinite;
+}
+
+@keyframes bg{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+.card{
+    width:90%;
+    max-width:700px;
+    padding:40px;
+    text-align:center;
+    border-radius:30px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.3);
+    box-shadow:0 8px 32px rgba(0,0,0,0.2);
+    color:white;
+    z-index:10;
+}
+
+h1{
+    font-size:3rem;
+    margin-bottom:20px;
+    text-shadow:0 0 20px rgba(255,255,255,.5);
+}
+
+.message{
+    font-size:1.3rem;
+    line-height:1.8;
+    min-height:170px;
+}
+
+button{
+    margin-top:25px;
+    padding:15px 35px;
+    border:none;
+    border-radius:50px;
+    background:white;
+    color:#ff4d6d;
+    font-size:1rem;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.08);
+    box-shadow:0 0 25px white;
+}
+
+.heart{
+    position:absolute;
+    color:white;
+    font-size:25px;
+    animation:float linear infinite;
+    opacity:.8;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(100vh) rotate(0deg);
+    }
+    to{
+        transform:translateY(-120px) rotate(360deg);
+    }
+}
+
+.sparkle{
+    position:absolute;
+    width:4px;
+    height:4px;
+    background:white;
+    border-radius:50%;
+    animation:sparkle 4s linear infinite;
+}
+
+@keyframes sparkle{
+    from{
+        transform:translateY(-10px);
+        opacity:1;
+    }
+    to{
+        transform:translateY(100vh);
+        opacity:0;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+    <h1>❤️ My Love ❤️</h1>
+
+    <div class="message" id="typewriter"></div>
+
+    <button onclick="showLove()">
+        Click for a Surprise 💌
+    </button>
+</div>
+
+<script>
+
+const text =
+`My Dearest Love,
+
+Every moment with you feels like a beautiful dream.
+Your smile brightens my darkest days,
+your voice calms every storm,
+and your presence makes life magical.
+
+Thank you for being my happiness,
+my comfort, and my favorite person.
+
+I love you today,
+tomorrow,
+and forever. ❤️`;
+
+let i = 0;
+
+function typeWriter(){
+    if(i < text.length){
+        document.getElementById("typewriter").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter,40);
+    }
+}
+
+typeWriter();
+
+function showLove(){
+    alert("You are the most beautiful chapter of my life ❤️");
+}
+
+function createHeart(){
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤";
+
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.animationDuration = (Math.random()*5+5)+"s";
+    heart.style.fontSize = (Math.random()*25+15)+"px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },10000);
+}
+
+setInterval(createHeart,300);
+
+function createSparkle(){
+    const sparkle=document.createElement("div");
+    sparkle.classList.add("sparkle");
+
+    sparkle.style.left=Math.random()*100+"vw";
+    sparkle.style.animationDuration=(Math.random()*3+2)+"s";
+
+    document.body.appendChild(sparkle);
+
+    setTimeout(()=>{
+        sparkle.remove();
+    },5000);
+}
+
+setInterval(createSparkle,100);
+
+</script>
+
+</body>
+  </html>
