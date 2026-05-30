@@ -6,79 +6,72 @@
 <title>For My Love ❤️</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+    font-family:Arial,sans-serif;
 }
 
 body{
     min-height:100vh;
-    overflow:hidden;
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(-45deg,#ff758c,#ff7eb3,#ff4d6d,#ff8fab);
-    background-size:400% 400%;
-    animation:bg 12s ease infinite;
+    overflow:hidden;
+    background:linear-gradient(135deg,#ff5f9e,#ff7db8);
 }
 
-@keyframes bg{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
-}
-
-.envelope-container{
+.container{
     text-align:center;
     z-index:10;
 }
 
-
 .envelope{
+    width:280px;
+    height:180px;
     position:relative;
-    width:300px;
-    height:200px;
     margin:auto;
     cursor:pointer;
 }
 
-.envelope-body{
-    position:absolute;
+.envelope-base{
     width:100%;
     height:100%;
     background:#ff8fab;
-    border-radius:10px;
-    z-index:2;
+    border-radius:12px;
+    position:absolute;
+    bottom:0;
+    left:0;
 }
 
 .flap{
+    width:0;
+    height:0;
+    border-left:140px solid transparent;
+    border-right:140px solid transparent;
+    border-top:90px solid #ff4d6d;
     position:absolute;
     top:0;
     left:0;
-    width:0;
-    height:0;
-    border-left:150px solid transparent;
-    border-right:150px solid transparent;
-    border-top:110px solid #ff4d6d;
     transform-origin:top;
     transition:1s;
-    z-index:4;
+    z-index:5;
 }
 
 .letter{
     position:absolute;
     left:15px;
-    bottom:0;
-    width:270px;
-    height:150px;
+    bottom:10px;
+    width:250px;
+    height:140px;
     background:white;
     border-radius:10px;
     padding:15px;
     overflow:hidden;
+    transition:1s;
     z-index:1;
-    transition:1s ease;
 }
 
 .letter h3{
@@ -86,91 +79,76 @@ body{
     margin-bottom:10px;
 }
 
-.envelope.open .flap{
+.letter p{
+    color:#444;
+    font-size:14px;
+    line-height:1.4;
+}
+
+.open .flap{
     transform:rotateX(180deg);
 }
 
-.envelope.open .letter{
+.open .letter{
     transform:translateY(-120px);
-}
-.letter h2{
-    color:#ff4d6d;
-    margin-bottom:10px;
-}
-
-.envelope.open .flap{
-    transform:rotateX(180deg);
-}
-
-.envelope.open .letter{
-    transform:translateY(-140px);
 }
 
 .instruction{
-    margin-top:20px;
+    margin-top:30px;
     color:white;
-    font-size:1.1rem;
+    font-size:18px;
 }
 
 button{
-    opacity:0;
-    pointer-events:none;
-    margin-top:25px;
-    padding:15px 35px;
+    margin-top:20px;
+    padding:14px 30px;
     border:none;
-    border-radius:50px;
+    border-radius:40px;
     background:white;
     color:#ff4d6d;
-    font-size:1rem;
+    font-size:16px;
     font-weight:bold;
     cursor:pointer;
+    opacity:0;
     transition:.5s;
 }
-
-button:hover{
-    transform:scale(1.08);
-    box-shadow:0 0 25px white;
-}
-
-/* Popup */
 
 .popup{
     display:none;
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,0.6);
+    background:rgba(0,0,0,.6);
     justify-content:center;
     align-items:center;
-    z-index:999;
+    z-index:100;
 }
 
-.popup-content{
+.popup-card{
     width:90%;
-    max-width:500px;
-    padding:30px;
+    max-width:400px;
+    background:white;
+    border-radius:20px;
+    padding:25px;
     text-align:center;
-    border-radius:25px;
-    background:rgba(255,255,255,0.2);
-    backdrop-filter:blur(15px);
-    color:white;
-    border:1px solid rgba(255,255,255,0.3);
-    animation:popup .5s ease;
 }
 
-@keyframes popup{
-    from{
-        opacity:0;
-        transform:scale(.7);
-    }
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
+.popup-card h2{
+    color:#ff4d6d;
+    margin-bottom:15px;
+}
+
+.popup-card p{
+    color:#555;
+    line-height:1.7;
 }
 
 .close{
-    float:right;
-    font-size:30px;
+    margin-top:15px;
+    padding:10px 20px;
+    border:none;
+    border-radius:25px;
+    background:#ff4d6d;
+    color:white;
     cursor:pointer;
 }
 
@@ -185,152 +163,17 @@ button:hover{
         transform:translateY(100vh);
     }
     to{
-        transform:translateY(-120px);
+        transform:translateY(-100px);
     }
 }
 
-.sparkle{
-    position:absolute;
-    width:4px;
-    height:4px;
-    background:white;
-    border-radius:50%;
-    animation:sparkle linear infinite;
-}
-
-@keyframes sparkle{
-    from{
-        transform:translateY(-10px);
-        opacity:1;
-    }
-    to{
-        transform:translateY(100vh);
-        opacity:0;
-    }
-}
 </style>
 </head>
-
 <body>
 
-<div class="envelope" id="envelope" onclick="openEnvelope()">
+<div class="container">
 
-    <div class="letter">
-        <h3>❤️ My Love ❤️</h3>
+    <div class="envelope" id="envelope" onclick="openEnvelope()">
 
-        <p>
-            My Dearest Love,
-            <br><br>
-            Every moment with you feels like a beautiful dream.
-            Thank you for being my happiness and my favorite person.
-            <br><br>
-            Forever Yours ❤️
-        </p>
-    </div>
-
-    <div class="envelope-body"></div>
-    <div class="flap"></div>
-
-</div>
-
-    <p class="instruction">
-        💌 Click the envelope to open your letter
-    </p>
-
-    <button id="surpriseBtn" onclick="showLove()">
-        Click for a Surprise 💖
-    </button>
-
-</div>
-
-<div class="popup" id="lovePopup">
-
-    <div class="popup-content">
-
-        <span class="close" onclick="closePopup()">×</span>
-
-        <h2>💌 To My Favorite Person 💌</h2>
-
-        <p>
-            Among billions of people in this world, my heart found you.
-            <br><br>
-            You are my comfort on difficult days, my happiness on good days,
-            and my favorite thought every day.
-            <br><br>
-            Every laugh we share, every conversation, and every little
-            moment together means more to me than words can describe.
-            <br><br>
-            I love you more than yesterday and less than tomorrow. ❤️✨
-        </p>
-
-    </div>
-
-</div>
-
-<script>
-
-function openEnvelope(){
-
-    document.getElementById("envelope")
-        .classList.add("open");
-
-    setTimeout(() => {
-
-        const btn =
-            document.getElementById("surpriseBtn");
-
-        btn.style.opacity = "1";
-        btn.style.pointerEvents = "auto";
-
-    },1000);
-
-}
-
-function showLove(){
-    document.getElementById("lovePopup").style.display="flex";
-}
-
-function closePopup(){
-    document.getElementById("lovePopup").style.display="none";
-}
-
-function createHeart(){
-    const heart=document.createElement("div");
-
-    heart.classList.add("heart");
-    heart.innerHTML="❤️";
-
-    heart.style.left=Math.random()*100+"vw";
-    heart.style.fontSize=(15+Math.random()*25)+"px";
-    heart.style.animationDuration=(5+Math.random()*5)+"s";
-
-    document.body.appendChild(heart);
-
-    setTimeout(()=>{
-        heart.remove();
-    },10000);
-}
-
-setInterval(createHeart,300);
-
-function createSparkle(){
-    const sparkle=document.createElement("div");
-
-    sparkle.classList.add("sparkle");
-
-    sparkle.style.left=Math.random()*100+"vw";
-    sparkle.style.animationDuration=(2+Math.random()*3)+"s";
-
-    document.body.appendChild(sparkle);
-
-    setTimeout(()=>{
-        sparkle.remove();
-    },5000);
-}
-
-setInterval(createSparkle,120);
-
-</script>
-
-</body>
-</html>
+        <div class="letter">
+            <
